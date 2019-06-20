@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import * as React from "react";
 import s from './style.scss';
 
-class App extends Component {
+class App extends React.Component {
     render() {
+
         return <div>
             <h1 className={s.Title}>Starter component</h1>
         </div>
