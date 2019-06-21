@@ -30,6 +30,8 @@ module.exports = {
                 use: [{
                     loader: process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
                 }, {
+                    loader: "css-modules-typescript-loader"
+                },{
                     loader: "css-loader",
                     options: {
                         sourceMap: true,
@@ -58,6 +60,16 @@ module.exports = {
                         loader: "html-loader"
                     }
                 ]
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                    }
+                }]
             }
         ]
     },

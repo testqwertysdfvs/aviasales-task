@@ -1,0 +1,8 @@
+@import "fonts";
+@import "variables";
+
+:global {
+  html, body {
+    font-family: $ff-open-sans;
+  }
+}
