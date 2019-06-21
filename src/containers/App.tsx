@@ -1,5 +1,6 @@
 import * as React from "react";
 import App from 'Components/App';
+import {Ticket} from "Components/TicketItem";
 
 const fetchTickets = () => fetch('http://localhost:3000/tickets', {
     method: 'GET',
@@ -16,13 +17,13 @@ const fetchTickets = () => fetch('http://localhost:3000/tickets', {
     });
 
 export interface CommonData {
-    tickets: any,
+    tickets: Array<Ticket> | null,
     error: boolean,
 }
 
 class AppContainer extends React.Component<object, CommonData> {
     state = {
-        tickets: {},
+        tickets: null,
         error: false,
     };
 
