@@ -28,7 +28,7 @@ class AppContainer extends React.Component<object, CommonData> {
         error: false,
     };
 
-    componentDidMount() {
+    componentDidMount(): void {
         this.getTickets();
     }
 

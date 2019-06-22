@@ -7,8 +7,13 @@ interface Props {
 }
 
 const TicketsList = (props: Props) => {
+
+    function sortByPrice(a: Ticket, b: Ticket): number {
+        return a.price - b.price
+    }
+
     const {tickets} = props,
-        list = tickets ? tickets.map(ticket =>
+        list = tickets ? tickets.sort(sortByPrice).map(ticket =>
             (
                 <li key={ticket.departure_time + ticket.price}>
                     <TicketItem {...ticket}/>

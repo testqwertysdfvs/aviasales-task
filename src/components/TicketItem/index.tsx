@@ -2,6 +2,7 @@ import * as React from 'react';
 import s from './style.scss';
 import {logos} from "Root/constants";
 import dateFormatter from './../../functions/dateFormatter';
+import declOfNum from './../../functions/declOfNum';
 
 export interface Ticket {
     origin: string;
@@ -48,7 +49,7 @@ const TicketItem = (props: Ticket) => {
                         <div className={s.Time}>{departure_time}</div>
                     <div>
                         <div className={s.Path}>
-                            {`${stops} пересадки`}
+                            {`${stops} ${declOfNum(stops, ['пересадка', 'пересадки', 'пересадок'])}`}
                         </div>
                     </div>
                     <div className={s.TimeArrival}>{arrival_time}</div>
