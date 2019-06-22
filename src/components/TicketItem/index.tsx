@@ -1,6 +1,7 @@
 import * as React from 'react';
 import s from './style.scss';
 import {logos} from "Root/constants";
+import dateFormatter from './../../functions/dateFormatter';
 
 export interface Ticket {
     origin: string;
@@ -55,11 +56,11 @@ const TicketItem = (props: Ticket) => {
                 <div className={s.ContentLine}>
                     <div className={s.Data}>
                         <div className={s.City}>{`${origin}, ${origin_name}`}</div>
-                        <div className={s.Date}>{departure_date}</div>
+                        <div className={s.Date}>{dateFormatter(departure_date)}</div>
                     </div>
                     <div className={s.DataArrival}>
                         <div className={s.City}>{`${destination}, ${destination_name}`}</div>
-                        <div className={s.Date}>{arrival_date}</div>
+                        <div className={s.Date}>{dateFormatter(arrival_date)}</div>
                     </div>
                 </div>
             </div>
