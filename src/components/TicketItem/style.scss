@@ -15,16 +15,22 @@
   .SideContent {
     display: flex;
     flex-direction: column;
-    padding: 25px 20px;
+    padding: 20px 20px 0;
     border-right: 1px solid #ECEFF1;
   }
 
   .Content {
+    padding: 20px 25px 25px;
+    width: 100%;
+  }
+
+  .ContentLine {
     display: flex;
     justify-content: space-between;
-    padding: 25px;
-    align-items: flex-start;
-    width: 100%;
+  }
+
+  .DataArrival {
+    text-align: right;
   }
 
   .Time {
@@ -33,6 +39,12 @@
     color: #4A4A4A;
     letter-spacing: 0;
     line-height: 26px;
+    margin-bottom: 16px;
+  }
+
+  .TimeArrival {
+    composes: Time;
+    text-align: right;
   }
 
   .City {
@@ -62,7 +74,7 @@
     color: #FFFFFF;
     letter-spacing: 0;
     text-align: center;
-
+    line-height: 24px;
     &:hover {
       background: #FF8124;
       transition-duration: .4s;
@@ -71,8 +83,15 @@
 
   .Logo {
     display: block;
+    width: 100%;
+  }
+
+  .ImgBox {
     width: 120px;
     margin: 0 auto 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
   }
 
   .Path {
@@ -82,7 +101,20 @@
     color: #8B9497;
     text-align: center;
     line-height: 12px;
-    border-bottom: 2px solid #D2D5D6;
+    padding-bottom: 7px;
+    position: relative;
+    left: -7px;
+    text-transform: uppercase;
+    top: 6px;
+    &:before {
+      content: '';
+      width: 96px;
+      border-bottom: 1px solid #D2D5D6;
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
     &:after {
       content: '';
       width: 13px;
@@ -91,6 +123,9 @@
       background-repeat: no-repeat;
       background-size: contain;
       display: inline-block;
+      position: absolute;
+      right: -28px;
+      bottom: -8px;
     }
   }
 }

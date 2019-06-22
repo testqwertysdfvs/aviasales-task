@@ -33,7 +33,9 @@ const TicketItem = (props: Ticket) => {
     return (
         <div className={s.Block}>
             <div className={s.SideContent}>
-                <img src={logos[carrier]} alt={carrier} className={s.Logo}/>
+                <div className={s.ImgBox}>
+                    <img src={logos[carrier]} alt={carrier} className={s.Logo}/>
+                </div>
                 <button type="button" className={s.BuyBtn}>
                     Купить
                     <br/>
@@ -41,18 +43,24 @@ const TicketItem = (props: Ticket) => {
                 </button>
             </div>
             <div className={s.Content}>
-                <div>
-                    <div className={s.Time}>{departure_time}</div>
-                    <div className={s.City}>{`${origin}, ${origin_name}`}</div>
-                    <div className={s.Date}>{departure_date}</div>
+                <div className={s.ContentLine}>
+                        <div className={s.Time}>{departure_time}</div>
+                    <div>
+                        <div className={s.Path}>
+                            {`${stops} пересадки`}
+                        </div>
+                    </div>
+                    <div className={s.TimeArrival}>{arrival_time}</div>
                 </div>
-                <div className={s.Path}>
-                    {`${stops} пересадки`}
-                </div>
-                <div>
-                    <div className={s.Time}>{arrival_time}</div>
-                    <div className={s.City}>{`${destination}, ${destination_name}`}</div>
-                    <div className={s.Date}>{arrival_date}</div>
+                <div className={s.ContentLine}>
+                    <div className={s.Data}>
+                        <div className={s.City}>{`${origin}, ${origin_name}`}</div>
+                        <div className={s.Date}>{departure_date}</div>
+                    </div>
+                    <div className={s.DataArrival}>
+                        <div className={s.City}>{`${destination}, ${destination_name}`}</div>
+                        <div className={s.Date}>{arrival_date}</div>
+                    </div>
                 </div>
             </div>
         </div>
