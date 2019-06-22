@@ -1,5 +1,6 @@
 import * as React from 'react';
 import s from './style.scss';
+import {logos} from "Root/constants";
 
 export interface Ticket {
     origin: string;
@@ -32,7 +33,7 @@ const TicketItem = (props: Ticket) => {
     return (
         <div className={s.Block}>
             <div className={s.SideContent}>
-                {carrier}
+                <img src={logos[carrier]} alt={carrier} className={s.Logo}/>
                 <button type="button" className={s.BuyBtn}>
                     Купить
                     <br/>

@@ -1,8 +1,9 @@
 import * as React from "react";
 import App from 'Components/App';
 import {Ticket} from "Components/TicketItem";
+import {dataUrl} from "Root/constants";
 
-const fetchTickets = () => fetch('http://localhost:3000/tickets', {
+const fetchTickets = () => fetch(dataUrl, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
