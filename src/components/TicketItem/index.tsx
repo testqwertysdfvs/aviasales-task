@@ -1,4 +1,5 @@
 import * as React from 'react';
+import s from './style.scss';
 
 export interface Ticket {
     origin: string;
@@ -15,10 +16,44 @@ export interface Ticket {
 }
 
 const TicketItem = (props: Ticket) => {
-    const {origin_name} = props;
+    const {
+        departure_time,
+        origin,
+        price,
+        carrier,
+        origin_name,
+        departure_date,
+        stops,
+        arrival_date,
+        arrival_time,
+        destination,
+        destination_name
+    } = props;
     return (
-        <div>
-            {origin_name}
+        <div className={s.Block}>
+            <div className={s.SideContent}>
+                {carrier}
+                <button type="button">
+                    Купить
+                    <br/>
+                    за {`${price}₽`}
+                </button>
+            </div>
+            <div className={s.Content}>
+                <div>
+                    <div className={s.Time}>{departure_time}</div>
+                    <div className={s.City}>{`${origin}, ${origin_name}`}</div>
+                    <div className={s.Date}>{departure_date}</div>
+                </div>
+                <div className={s.Stops}>
+                    {`${stops} пересадки`}
+                </div>
+                <div>
+                    <div className={s.Time}>{arrival_time}</div>
+                    <div className={s.City}>{`${destination}, ${destination_name}`}</div>
+                    <div className={s.Date}>{arrival_date}</div>
+                </div>
+            </div>
         </div>
     );
 };
