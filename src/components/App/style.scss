@@ -1,4 +1,11 @@
-.Title {
-  color: red;
-  display: flex;
+:local {
+  .Block {
+    display: flex;
+    max-width: 848px;
+    padding: 0 15px;
+    margin: auto;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 }

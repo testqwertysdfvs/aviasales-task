@@ -1,7 +1,9 @@
+import Options from "Components/Options";
 import {Ticket} from "Components/TicketItem";
 import TicketsList from "Components/TicketsList";
 import * as React from "react";
 import {CommonData} from "Root/containers/App";
+import s from './style.scss';
 
 interface State {
     tickets: Array<Ticket> | null,
@@ -27,7 +29,8 @@ class App extends React.Component<CommonData, State> {
     render() {
         const {tickets} = this.state;
         return (
-            <div>
+            <div className={s.Block}>
+                <Options/>
                 <TicketsList tickets={tickets}/>
             </div>
         );
