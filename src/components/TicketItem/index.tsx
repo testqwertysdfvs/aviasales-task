@@ -33,7 +33,7 @@ const TicketItem = (props: Ticket) => {
         <div className={s.Block}>
             <div className={s.SideContent}>
                 {carrier}
-                <button type="button">
+                <button type="button" className={s.BuyBtn}>
                     Купить
                     <br/>
                     за {`${price}₽`}
@@ -45,7 +45,7 @@ const TicketItem = (props: Ticket) => {
                     <div className={s.City}>{`${origin}, ${origin_name}`}</div>
                     <div className={s.Date}>{departure_date}</div>
                 </div>
-                <div className={s.Stops}>
+                <div className={s.Path}>
                     {`${stops} пересадки`}
                 </div>
                 <div>
