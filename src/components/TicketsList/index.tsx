@@ -7,11 +7,18 @@ interface Props {
 
 const TicketsList = (props: Props) => {
     const {tickets} = props,
-        list = tickets ? tickets.map(ticket => <li key={ticket.departure_time + ticket.price}><TicketItem {...ticket}/>
-        </li>) : null;
-    return <ul>
-        {list}
-    </ul>;
+        list = tickets ? tickets.map(ticket =>
+            (
+                <li key={ticket.departure_time + ticket.price}>
+                    <TicketItem {...ticket}/>
+                </li>
+            )
+        ) : null;
+    return (
+        <ul>
+            {list}
+        </ul>
+    );
 };
 
 export default TicketsList;

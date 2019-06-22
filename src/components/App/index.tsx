@@ -5,9 +5,11 @@ import {CommonData} from "Root/containers/App";
 class App extends React.Component<CommonData> {
     render() {
         const {tickets} = this.props;
-        return <div>
-            <TicketsList tickets={tickets}/>
-        </div>
+        return (
+            <div>
+                <TicketsList tickets={tickets}/>
+            </div>
+        );
     }
 }
 

@@ -16,9 +16,11 @@ export interface Ticket {
 
 const TicketItem = (props: Ticket) => {
     const {origin_name} = props;
-    return <div>
-        {origin_name}
-    </div>;
+    return (
+        <div>
+            {origin_name}
+        </div>
+    );
 };
 
 export default TicketItem;
