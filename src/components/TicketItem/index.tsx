@@ -2,6 +2,7 @@ import * as React from 'react';
 import s from './style.scss';
 import {currencies, logos} from "Root/constants";
 import dateFormatter from './../../functions/dateFormatter';
+import priceFormatter from './../../functions/priceFormatter';
 import declOfNum from './../../functions/declOfNum';
 import {AppContext} from "Components/App";
 
@@ -43,7 +44,7 @@ const TicketItem = (props: Ticket) => {
                     <button type="button" className={s.BuyBtn}>
                         Купить
                         <br/>
-                        за {`${Math.round(price * context.currencyRates.rates[context.currency])} ${currencies[context.currency]}`}
+                        за {`${priceFormatter(price * context.currencyRates.rates[context.currency])} ${currencies[context.currency]}`}
                     </button>
                 </div>
                 <div className={s.Content}>
