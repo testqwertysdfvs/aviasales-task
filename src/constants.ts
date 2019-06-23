@@ -22,7 +22,7 @@ export const currencyRatesInitial = {
     }
 };
 
-export const currencies: { [ley: string]: string } = {
+export const currencies: { [key: string]: string } = {
     RUB: '₽',
     USD: '$',
     EUR: '€',

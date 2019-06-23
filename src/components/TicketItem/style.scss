@@ -9,7 +9,10 @@
     border-radius: 5px;
     display: flex;
     max-width: 492px;
-    height: 150px;
+    height: auto;
+    @include respond-to('medium') {
+      height: 150px;
+    }
     @include respond-to('large') {
       max-width: 566px;
       height: 161px;
@@ -53,6 +56,11 @@
     }
   }
 
+  .Header {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .TimeArrival {
     composes: Time;
     text-align: right;
@@ -72,6 +80,10 @@
     color: #8B9497;
   }
 
+  .ButtonContainer {
+    display: flex;
+  }
+
   .BuyBtn {
     background: #FF6D00;
     box-shadow: 0 1px 0 0 #D64D08, 0 2px 1px 0 rgba(0, 0, 0, .1);
@@ -86,6 +98,10 @@
     height: 50px;
     font-size: 14px;
     line-height: 22px;
+    margin: 20px 0 0 auto;
+    @include respond-to('medium') {
+      margin: auto;
+    }
     @include respond-to('large') {
       width: 160px;
       height: 56px;
@@ -104,11 +120,15 @@
   }
 
   .ImgBox {
-    width: 120px;
-    margin: 0 auto 20px;
+    width: 90px;
+    margin: 0 0 15px auto;
     height: 40px;
     display: flex;
     align-items: center;
+    @include respond-to('medium') {
+      margin: 0 auto 20px;
+      width: 120px;
+    }
   }
 
   .Path {
@@ -120,30 +140,36 @@
     line-height: 12px;
     padding-bottom: 7px;
     position: relative;
-    left: -7px;
     text-transform: uppercase;
     top: 6px;
     height: 12px;
+    @include respond-to('medium') {
+      left: -7px;
+    }
     &:before {
-      content: '';
-      width: 96px;
-      border-bottom: 1px solid #D2D5D6;
-      position: absolute;
-      bottom: -1px;
-      left: 50%;
-      transform: translate(-50%, 0);
+      @include respond-to('medium') {
+        content: '';
+        width: 96px;
+        border-bottom: 1px solid #D2D5D6;
+        position: absolute;
+        bottom: -1px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
     }
     &:after {
-      content: '';
-      width: 13px;
-      height: 14px;
-      background-image: url("./../../assets/icons/airplane.svg");
-      background-repeat: no-repeat;
-      background-size: contain;
-      display: inline-block;
-      position: absolute;
-      right: -28px;
-      bottom: -8px;
+      @include respond-to('medium') {
+        content: '';
+        width: 13px;
+        height: 14px;
+        background-image: url("./../../assets/icons/airplane.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: inline-block;
+        position: absolute;
+        right: -28px;
+        bottom: -8px;
+      }
     }
   }
 }

@@ -4,6 +4,7 @@ import {currencies, logos} from "Root/constants";
 import dateFormatter from './../../functions/dateFormatter';
 import priceFormatter from './../../functions/priceFormatter';
 import declOfNum from './../../functions/declOfNum';
+import MediaQuery from 'react-responsive';
 import {AppContext} from "Components/App";
 
 export interface Ticket {
@@ -37,24 +38,38 @@ const TicketItem = (props: Ticket) => {
     return (
         <AppContext.Consumer>
             {context => <div className={s.Block}>
-                <div className={s.SideContent}>
-                    <div className={s.ImgBox}>
-                        <img src={logos[carrier]} alt={carrier} className={s.Logo}/>
+                <MediaQuery minWidth={769}>
+                    <div className={s.SideContent}>
+                        <div className={s.ImgBox}>
+                            <img src={logos[carrier]} alt={carrier} className={s.Logo}/>
+                        </div>
+                        <button type="button" className={s.BuyBtn}>
+                            Купить
+                            <br/>
+                            за {`${priceFormatter(price * context.currencyRates.rates[context.currency])} ${currencies[context.currency]}`}
+                        </button>
                     </div>
-                    <button type="button" className={s.BuyBtn}>
-                        Купить
-                        <br/>
-                        за {`${priceFormatter(price * context.currencyRates.rates[context.currency])} ${currencies[context.currency]}`}
-                    </button>
-                </div>
+                </MediaQuery>
                 <div className={s.Content}>
-                    <div className={s.ContentLine}>
-                        <div className={s.Time}>{departure_time}</div>
-                        <div>
+                    <MediaQuery maxWidth={768}>
+                        <div className={s.Header}>
                             <div className={s.Path}>
                                 {`${stops} ${declOfNum(stops, ['пересадка', 'пересадки', 'пересадок'])}`}
                             </div>
+                            <div className={s.ImgBox}>
+                                <img src={logos[carrier]} alt={carrier} className={s.Logo}/>
+                            </div>
                         </div>
+                    </MediaQuery>
+                    <div className={s.ContentLine}>
+                        <div className={s.Time}>{departure_time}</div>
+                        <MediaQuery minWidth={768}>
+                            <div>
+                                <div className={s.Path}>
+                                    {`${stops} ${declOfNum(stops, ['пересадка', 'пересадки', 'пересадок'])}`}
+                                </div>
+                            </div>
+                        </MediaQuery>
                         <div className={s.TimeArrival}>{arrival_time}</div>
                     </div>
                     <div className={s.ContentLine}>
@@ -67,6 +82,15 @@ const TicketItem = (props: Ticket) => {
                             <div className={s.Date}>{dateFormatter(arrival_date)}</div>
                         </div>
                     </div>
+                    <MediaQuery maxWidth={768}>
+                        <div className={s.ButtonContainer}>
+                            <button type="button" className={s.BuyBtn}>
+                                Купить
+                                <br/>
+                                за {`${priceFormatter(price * context.currencyRates.rates[context.currency])} ${currencies[context.currency]}`}
+                            </button>
+                        </div>
+                    </MediaQuery>
                 </div>
             </div>}
         </AppContext.Consumer>
