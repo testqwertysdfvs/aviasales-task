@@ -7,9 +7,13 @@
     height: 161px;
     margin: 0 auto 20px;
     background-color: #FFFFFF;
-    box-shadow: 0 1px 4px 0 rgba(91, 137, 164, .25);
+    box-shadow: 0 5px 25px 0 rgba(91,137,164,0.10);
     border-radius: 5px;
     display: flex;
+    &:hover {
+      transition-duration: .4s;
+      box-shadow: 0 10px 50px 0 rgba(91,137,164,0.25);
+    }
   }
 
   .SideContent {

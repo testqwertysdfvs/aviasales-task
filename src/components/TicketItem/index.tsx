@@ -43,7 +43,7 @@ const TicketItem = (props: Ticket) => {
                     <button type="button" className={s.BuyBtn}>
                         Купить
                         <br/>
-                        за {`${price * context.currencyRates.rates[context.currency]}${currencies[context.currency]}`}
+                        за {`${price * context.currencyRates.rates[context.currency]} ${currencies[context.currency]}`}
                     </button>
                 </div>
                 <div className={s.Content}>

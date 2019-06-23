@@ -35,8 +35,10 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "@types/classnames": "^2.2.8",
     "@types/react": "^16.8.21",
     "@types/react-dom": "^16.8.4",
+    "classnames": "^2.2.6",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",

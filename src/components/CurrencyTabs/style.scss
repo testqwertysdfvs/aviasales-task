@@ -1,0 +1,54 @@
+@import "./../../style/variables";
+
+:local {
+  .Tabs {
+    display: flex;
+    padding: 0;
+    list-style: none;
+  }
+
+  .TabsItem {
+    flex: 1 0 0;
+    border: 1px solid #D2D5D6;
+    background-color: #fff;
+    border-right: none;
+    &:hover {
+      background-color: #F2FCFF;
+      border-color: #64B5F5;
+      transition-duration: .4s;
+    }
+  }
+
+  .TabBtn {
+    cursor: pointer;
+    font-family: $ff-open-sans;
+    font-weight: 600;
+    font-size: 12px;
+    color: #2196F3;
+    letter-spacing: 0.5px;
+    line-height: 22px;
+    text-transform: uppercase;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  .TabsItemSelected {
+    background-color: #2196F3;
+  }
+  .TabsItemLeft {
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+  }
+  .TabsItem:hover + .TabsItem {
+    border-left-color: #64B5F5;
+    transition-duration: .4s;
+  }
+  .TabsItemLeft:hover + .TabsItem {
+    border-left-color: #64B5F5;
+    transition-duration: .4s;
+  }
+  .TabsItemRight {
+    border-radius: 0 5px 5px 0;
+  }
+}

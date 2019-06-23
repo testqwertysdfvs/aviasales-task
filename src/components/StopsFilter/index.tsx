@@ -25,7 +25,6 @@ const StopsFilter = () => {
         });
 
     useEffect(() => context.filterStops(stopsVariants, true), [stopsVariants.length]); // set initial state of filter
-
     return (
         <ul className={s.List}>
             <li><FilterCheckbox

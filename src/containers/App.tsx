@@ -68,7 +68,6 @@ class AppContainer extends React.Component<object, CommonData> {
     async getCurrencyRates() {
         try {
             const currencyRates = await fetchCurrencyRates();
-            console.log('currencyRates', currencyRates);
             this.setState({
                 currencyRates,
             })
