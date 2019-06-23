@@ -37,14 +37,12 @@ export type CurrencyRatesType = {
 export interface CommonData {
     tickets: Array<Ticket> | null,
     currencyRates: CurrencyRatesType,
-    error: boolean | string,
 }
 
 class AppContainer extends React.Component<object, CommonData> {
     state = {
         tickets: null,
         currencyRates: currencyRatesInitial,
-        error: false,
     };
 
     componentDidMount(): void {
@@ -59,9 +57,7 @@ class AppContainer extends React.Component<object, CommonData> {
                 tickets
             })
         } catch (e) {
-            this.setState({
-                error: 'TICKETS_ERROR',
-            })
+            console.error('Не удалось загрузить билеты')
         }
     }
 
@@ -72,15 +68,13 @@ class AppContainer extends React.Component<object, CommonData> {
                 currencyRates,
             })
         } catch (e) {
-            this.setState({
-                error: 'CURRENCY_ERROR',
-            })
+            console.error('Не удалось загрузить фктуальные курсы валют')
         }
     }
 
     render() {
-        const {tickets, currencyRates, error} = this.state;
-        return <App tickets={tickets} currencyRates={currencyRates} error={error}/>;
+        const {tickets, currencyRates} = this.state;
+        return <App tickets={tickets} currencyRates={currencyRates}/>;
     }
 }
 
