@@ -6,7 +6,7 @@ import * as React from "react";
 import {CommonData} from "Root/containers/App";
 import s from './style.scss';
 
-export type filterStopsType = (stop: number, add: boolean) => void;
+export type filterStopsType = (stop: number | Array<number>, add: boolean) => void;
 export type setCurrencyType = (currency: string) => void;
 
 interface State {
@@ -17,24 +17,35 @@ interface State {
     setCurrency: setCurrencyType,
 }
 
-export const AppContext = React.createContext<Partial<State>>({});
+interface ContextType {
+    tickets?: Array<Ticket> | null,
+    stops?: stopsArrayType,
+    currency?: string,
+    filterStops: filterStopsType,
+    setCurrency?: setCurrencyType,
+}
 
-class App extends React.Component<CommonData, State> {
+export const AppContext = React.createContext<ContextType>({
+    filterStops: () => {
+    },
+});
+
+class App extends React.PureComponent<CommonData, State> {
     filterStops: filterStopsType;
     setCurrency: setCurrencyType;
 
     constructor(props: CommonData) {
         super(props);
 
-        this.filterStops = (stop: number, add: boolean) => {
+        this.filterStops = (stop: number | Array<number>, add: boolean): void => { // actions depends on type of first argument, if it's numb er we add value to array, if it's array, we replace full state
             const {stops} = this.state;
             if (add) {
                 this.setState({
-                    stops: [...stops, stop],
+                    stops: typeof stop === 'number' ? [...stops, stop] : stop,
                 });
             } else {
                 this.setState({
-                    stops: stops.filter(el => el !== stop)
+                    stops: typeof stop === 'number' ? stops.filter(el => el !== stop) : [],
                 });
             }
         };
@@ -65,7 +76,7 @@ class App extends React.Component<CommonData, State> {
 
     render() {
         const {tickets, stops} = this.state;
-        console.log(stops)
+        console.log('stops', stops);
         return (
             <AppContext.Provider value={this.state}>
                 <div className={s.Block}>

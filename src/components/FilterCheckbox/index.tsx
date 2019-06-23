@@ -1,39 +1,71 @@
-import {filterStopsType} from "Components/App";
 import * as React from 'react';
 import declOfNum from './../../functions/declOfNum';
 import s from './style.scss';
 
 interface Props {
-    value: number,
+    value: number | Array<number>,
     checked: boolean,
-    changeFunc: filterStopsType | undefined,
+    changeFunc: (value: any, add: boolean) => void,
+    all: boolean,
 }
 
-class FilterCheckbox extends React.Component<Props> {
+interface State {
+    hover: boolean,
+}
+
+class FilterCheckbox extends React.Component<Props, State> {
+    static defaultProps = {
+        all: false,
+    };
+
+    state = {
+        hover: true,
+    };
 
     checkboxChange = (): void => {
         const {checked, changeFunc, value} = this.props;
-        if(changeFunc) {
-            changeFunc(value, !checked);
-        }
+        changeFunc(value, !checked);
+    };
+
+    onlyThisSelect = (): void => {
+        const {changeFunc, value} = this.props;
+        changeFunc([value], true);
     }
 
+    handleHoverIn = () => {
+        this.setState({
+            hover: true,
+        });
+    };
+
+    handleHoverOut = () => {
+        this.setState({
+            hover: false,
+        });
+    };
+
     render() {
-        const {value, checked} = this.props;
+        const {value, checked, all} = this.props,
+            {hover} = this.state;
         let text: string;
         if (value === 0) {
             text = 'Без пересадок';
-        } else {
+        } else if (typeof value === 'number') {
             text = `${value} ${declOfNum(value, ['пересадка', 'пересадки', 'пересадок'])}`;
+        } else {
+            text = 'Все';
         }
 
         return (
-            <div>
+            <div
+                // onMouseOver={this.handleHoverIn}
+                // onMouseOut={this.handleHoverOut}
+            >
                 <label className={s.Container}>{text}
                     <input type="checkbox" checked={checked} onChange={this.checkboxChange}/>
                     <span className={s.Checkmark}/>
                 </label>
-                <button type="button">Только</button>
+                {!all && hover ? <button type="button" onClick={this.onlyThisSelect}>Только</button> : null}
             </div>
         );
     }
