@@ -3,13 +3,17 @@
 :local {
   .Block {
     width: 100%;
-    max-width: 566px;
-    height: 161px;
     margin: 0 auto 20px;
     background-color: #FFFFFF;
     box-shadow: 0 5px 25px 0 rgba(91,137,164,0.10);
     border-radius: 5px;
     display: flex;
+    max-width: 492px;
+    height: 150px;
+    @include respond-to('large') {
+      max-width: 566px;
+      height: 161px;
+    }
     &:hover {
       transition-duration: .4s;
       box-shadow: 0 10px 50px 0 rgba(91,137,164,0.25);
@@ -39,11 +43,14 @@
 
   .Time {
     font-family: $ff-helvetica;
-    font-size: 32px;
     color: #4A4A4A;
     letter-spacing: 0;
     line-height: 26px;
     margin-bottom: 16px;
+    font-size: 26px;
+    @include respond-to('large') {
+      font-size: 32px;
+    }
   }
 
   .TimeArrival {
@@ -72,13 +79,19 @@
     cursor: pointer;
     border: none;
     outline: none;
-    width: 160px;
-    height: 56px;
-    font-size: 16px;
     color: #FFFFFF;
     letter-spacing: 0;
     text-align: center;
-    line-height: 24px;
+    width: 140px;
+    height: 50px;
+    font-size: 14px;
+    line-height: 22px;
+    @include respond-to('large') {
+      width: 160px;
+      height: 56px;
+      font-size: 16px;
+      line-height: 24px;
+    }
     &:hover {
       background: #FF8124;
       transition-duration: .4s;

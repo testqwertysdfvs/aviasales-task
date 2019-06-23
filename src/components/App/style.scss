@@ -1,17 +1,27 @@
+@import "./../../style/variables";
+
 :local {
   .Header {
-    padding: 50px 20px;
+    padding: 35px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    @include respond-to('large') {
+      padding: 50px 20px;
+    }
   }
   .Block {
     display: flex;
-    max-width: 848px;
+    max-width: 868px;
     padding: 0 15px;
     margin: auto;
     width: 100%;
     justify-content: space-between;
     align-items: flex-start;
+    box-sizing: border-box;
+    flex-direction: column;
+    @include respond-to('medium') {
+      flex-direction: row;
+    }
   }
 }

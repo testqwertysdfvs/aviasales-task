@@ -6,8 +6,16 @@
     box-shadow: 0 1px 4px 0 rgba(91,137,164,0.25);
     border-radius: 5px;
     width: 100%;
-    max-width: 232px;
+    max-width: 492px;
+    margin: 0 auto 40px;
     padding-bottom: 10px;
+    @include respond-to('medium') {
+      max-width: 220px;
+      margin: 0;
+    }
+    @include respond-to('large') {
+      max-width: 232px;
+    }
   }
   .Title {
     font-family: $ff-open-sans;

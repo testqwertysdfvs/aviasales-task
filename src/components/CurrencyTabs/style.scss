@@ -5,7 +5,10 @@
     display: flex;
     list-style: none;
     padding: 0 15px;
-    margin: 10px 0 28px;
+    margin: 10px 0 20px;
+    @include respond-to('large') {
+      margin: 10px 0 28px;
+    }
   }
 
   .TabsItem {
@@ -27,13 +30,16 @@
     font-weight: 600;
     font-size: 12px;
     letter-spacing: 0.5px;
-    line-height: 37px;
+    line-height: 30px;
     color: inherit;
     text-transform: uppercase;
     width: 100%;
     background-color: transparent;
     border: none;
     outline: none;
+    @include respond-to('large') {
+      line-height: 37px;
+    }
   }
   .TabsItemSelected {
     background-color: #2196F3;
