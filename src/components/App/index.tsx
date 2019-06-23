@@ -1,16 +1,18 @@
+import {StopType} from "Components/FilterCheckbox";
 import Options from "Components/Options";
+import {stopsArrayType} from "Components/StopsFilter";
 import {Ticket} from "Components/TicketItem";
 import TicketsList from "Components/TicketsList";
 import * as React from "react";
 import {CommonData} from "Root/containers/App";
 import s from './style.scss';
 
-type filterStopsType = (stops: Array<number>) => void;
-type setCurrencyType = (currency: string) => void;
+export type filterStopsType = (stop: StopType, add: boolean) => void;
+export type setCurrencyType = (currency: string) => void;
 
 interface State {
     tickets: Array<Ticket> | null,
-    stops: Array<number> | 'all',
+    stops: stopsArrayType,
     currency: string,
     filterStops: filterStopsType,
     setCurrency: setCurrencyType,
@@ -25,10 +27,17 @@ class App extends React.Component<CommonData, State> {
     constructor(props: CommonData) {
         super(props);
 
-        this.filterStops = (stops: Array<number>) => {
-            this.setState({
-                stops,
-            });
+        this.filterStops = (stop: StopType, add: boolean) => {
+            const {stops} = this.state;
+            if (add) {
+                this.setState({
+                    stops: [...stops, stop],
+                });
+            } else {
+                this.setState({
+                    stops: stops.filter(el => el !== stop)
+                });
+            }
         };
 
         this.setCurrency = (currency: string) => {
@@ -39,7 +48,7 @@ class App extends React.Component<CommonData, State> {
 
         this.state = {
             tickets: props.tickets,
-            stops: 'all',
+            stops: ['all'],
             currency: 'rub',
             filterStops: this.filterStops,
             setCurrency: this.setCurrency,
@@ -56,7 +65,8 @@ class App extends React.Component<CommonData, State> {
     }
 
     render() {
-        const {tickets} = this.state;
+        const {tickets, stops} = this.state;
+        console.log(stops)
         return (
             <AppContext.Provider value={this.state}>
                 <div className={s.Block}>
