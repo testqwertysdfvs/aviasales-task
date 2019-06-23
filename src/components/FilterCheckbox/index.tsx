@@ -19,7 +19,7 @@ class FilterCheckbox extends React.Component<Props, State> {
     };
 
     state = {
-        hover: true,
+        hover: false,
     };
 
     checkboxChange = (): void => {
@@ -58,14 +58,15 @@ class FilterCheckbox extends React.Component<Props, State> {
 
         return (
             <div
-                // onMouseOver={this.handleHoverIn}
-                // onMouseOut={this.handleHoverOut}
+                onMouseEnter={this.handleHoverIn}
+                onMouseLeave={this.handleHoverOut}
+                className={s.Block}
             >
                 <label className={s.Container}>{text}
                     <input type="checkbox" checked={checked} onChange={this.checkboxChange}/>
                     <span className={s.Checkmark}/>
                 </label>
-                {!all && hover ? <button type="button" onClick={this.onlyThisSelect}>Только</button> : null}
+                {!all && hover ? <button type="button" onClick={this.onlyThisSelect} className={s.OnlyBtn}>Только</button> : null}
             </div>
         );
     }

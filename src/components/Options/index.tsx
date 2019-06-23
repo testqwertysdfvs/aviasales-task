@@ -5,6 +5,7 @@ import s from './style.scss';
 const Options = () => {
     return (
         <div className={s.Options}>
+            <h3 className={s.Title}>Количество пересадок</h3>
             <StopsFilter/>
         </div>
     )

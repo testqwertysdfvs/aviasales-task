@@ -1,3 +1,5 @@
+@import "./../../style/variables";
+
 :local {
   .Options {
     background: #FFFFFF;
@@ -5,5 +7,16 @@
     border-radius: 5px;
     width: 100%;
     max-width: 232px;
+  }
+  .Title {
+    font-family: $ff-open-sans;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4A4A4A;
+    letter-spacing: 0.5px;
+    line-height: 19px;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+    padding-left: 20px;
   }
 }
