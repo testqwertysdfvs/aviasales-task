@@ -12,18 +12,16 @@ const fetchTickets = () => fetch(dataUrl, {
     .then(res => {
         if (res.status === 200) {
             return res.json();
-        } else {
-            throw new Error(res.statusText);
         }
+        throw new Error(res.statusText);
     });
 
 const fetchCurrencyRates = (base: string = baseCurrency, symbols: string = Object.keys(currencies).join(',')) => fetch(`${currencyRatesUrl}?base=${base}&symbols=${symbols}`)
     .then(res => {
         if (res.status === 200) {
             return res.json();
-        } else {
-            throw new Error(res.statusText);
         }
+        throw new Error(res.statusText);
     });
 
 export type CurrencyRatesType = {
@@ -37,12 +35,14 @@ export type CurrencyRatesType = {
 export interface CommonData {
     tickets: Array<Ticket> | null,
     currencyRates: CurrencyRatesType,
+    error: string | boolean,
 }
 
 class AppContainer extends React.Component<object, CommonData> {
     state = {
         tickets: null,
         currencyRates: currencyRatesInitial,
+        error: false,
     };
 
     componentDidMount(): void {
@@ -58,6 +58,9 @@ class AppContainer extends React.Component<object, CommonData> {
             })
         } catch (e) {
             console.error('Не удалось загрузить билеты')
+            this.setState({
+                error: 'TICKETS_ERROR'
+            })
         }
     }
 
@@ -69,12 +72,15 @@ class AppContainer extends React.Component<object, CommonData> {
             })
         } catch (e) {
             console.error('Не удалось загрузить фктуальные курсы валют')
+            this.setState({
+                error: 'CURRENCY_ERROR'
+            })
         }
     }
 
     render() {
-        const {tickets, currencyRates} = this.state;
-        return <App tickets={tickets} currencyRates={currencyRates}/>;
+        const {tickets, currencyRates, error} = this.state;
+        return <App tickets={tickets} currencyRates={currencyRates} error={error}/>;
     }
 }
 

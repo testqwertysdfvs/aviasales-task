@@ -18,6 +18,7 @@ interface State {
     currencyRates: CurrencyRatesType,
     filterStops: filterStopsType,
     setCurrency: setCurrencyType,
+    error?: string | boolean,
 }
 
 interface ContextType {
@@ -27,6 +28,7 @@ interface ContextType {
     filterStops: filterStopsType,
     currencyRates: CurrencyRatesType,
     setCurrency: setCurrencyType,
+    error?: string | boolean,
 }
 
 export const AppContext = React.createContext<ContextType>({
@@ -71,11 +73,12 @@ class App extends React.PureComponent<CommonData, State> {
             currencyRates: props.currencyRates,
             filterStops: this.filterStops,
             setCurrency: this.setCurrency,
+            error: false,
         };
     }
 
     componentDidUpdate(prevProps: Readonly<CommonData>): void {
-        const {tickets, currencyRates} = this.props;
+        const {tickets, currencyRates, error} = this.props;
         if (!prevProps.tickets && tickets) {
             this.setState({
                 tickets
@@ -86,16 +89,28 @@ class App extends React.PureComponent<CommonData, State> {
                 currencyRates
             });
         }
+        if (error && prevProps.error !== error) {
+            this.setState({
+                error,
+            })
+        }
     }
 
     render() {
-        const {tickets, stops} = this.state;
+        const {tickets, stops} = this.state,
+            {error} = this.props;
         return (
             <AppContext.Provider value={this.state}>
                 <div className={s.Header}><img src={AirplaneLogo} alt="airplane-logo"/></div>
                 <div className={s.Block}>
                     <Options/>
-                    <TicketsList tickets={tickets} stops={stops}/>
+                    {error === 'TICKETS_ERROR' ? (
+                        <div className={s.Error}>
+                            Не удалось загрузить данные по билетам, возможно не запущен локальный сервер.
+                            <br/>
+                            Запустить сервер: json-server --watch tickets.json
+                        </div>
+                    ) : <TicketsList tickets={tickets} stops={stops}/>}
                 </div>
             </AppContext.Provider>
         );

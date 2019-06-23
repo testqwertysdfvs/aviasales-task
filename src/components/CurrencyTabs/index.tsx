@@ -27,6 +27,7 @@ const CurrencyTabs = () => {
         });
     return (
         <ul className={s.Tabs}>
+            {context.error === 'CURRENCY_ERROR' ? <div className={s.Error}>Не удалось загрузить данные по валютам</div> : null}
             {tabList}
         </ul>
     );

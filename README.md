@@ -3,7 +3,7 @@
 ## Запуск
 1. `yarn install` - установить зависимости
 
-2. `json-server --watch tickets.json` - запустить локальный сервер с данными по билетам
+2. `json-server --watch tickets.json` - запустить локальный сервер с данными по билетам (на компьютере должен быль глобально установлен json-server `npm install -g json-server`)
 
 3. `yarn start` - запустить development версию
 
