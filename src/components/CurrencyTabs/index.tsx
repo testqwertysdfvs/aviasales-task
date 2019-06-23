@@ -32,4 +32,4 @@ const CurrencyTabs = () => {
     );
 };
 
-export default CurrencyTabs;
+export default React.memo(CurrencyTabs);

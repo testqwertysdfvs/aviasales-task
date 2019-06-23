@@ -22,6 +22,13 @@ class FilterCheckbox extends React.Component<Props, State> {
         hover: false,
     };
 
+    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+        const {checked} = this.props,
+            {hover} = this.state;
+
+        return hover !== nextState.hover || checked !== nextProps.checked;
+    }
+
     checkboxChange = (): void => {
         const {checked, changeFunc, value} = this.props;
         changeFunc(value, !checked);
@@ -30,7 +37,7 @@ class FilterCheckbox extends React.Component<Props, State> {
     onlyThisSelect = (): void => {
         const {changeFunc, value} = this.props;
         changeFunc([value], true);
-    }
+    };
 
     handleHoverIn = () => {
         this.setState({
@@ -43,7 +50,6 @@ class FilterCheckbox extends React.Component<Props, State> {
             hover: false,
         });
     };
-
     render() {
         const {value, checked, all} = this.props,
             {hover} = this.state;
@@ -66,7 +72,8 @@ class FilterCheckbox extends React.Component<Props, State> {
                     <input type="checkbox" checked={checked} onChange={this.checkboxChange}/>
                     <span className={s.Checkmark}/>
                 </label>
-                {!all && hover ? <button type="button" onClick={this.onlyThisSelect} className={s.OnlyBtn}>Только</button> : null}
+                {!all && hover ?
+                    <button type="button" onClick={this.onlyThisSelect} className={s.OnlyBtn}>Только</button> : null}
             </div>
         );
     }

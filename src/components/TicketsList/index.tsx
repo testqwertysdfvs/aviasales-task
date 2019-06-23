@@ -22,6 +22,7 @@ const TicketsList = (props: Props) => {
                 </li>
             )
         ) : null;
+
     return (
         <ul className={s.List}>
             {list}
@@ -29,4 +30,4 @@ const TicketsList = (props: Props) => {
     );
 };
 
-export default TicketsList;
+export default React.memo(TicketsList);

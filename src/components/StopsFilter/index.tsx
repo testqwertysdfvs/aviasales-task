@@ -1,5 +1,4 @@
 import FilterCheckbox from "Components/FilterCheckbox";
-import {memo, useEffect} from "react";
 import * as React from 'react';
 import {AppContext} from "Components/App";
 import s from './style.scss';
@@ -24,7 +23,7 @@ const StopsFilter = () => {
             );
         });
 
-    useEffect(() => context.filterStops(stopsVariants, true), [tickets]); // set initial state of filter
+    React.useEffect(() => context.filterStops(stopsVariants, true), [tickets]); // set initial state of filter
     return (
         <ul className={s.List}>
             <li><FilterCheckbox
@@ -38,4 +37,4 @@ const StopsFilter = () => {
     );
 };
 
-export default memo(StopsFilter);
+export default React.memo(StopsFilter);
