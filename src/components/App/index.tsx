@@ -25,13 +25,15 @@ interface ContextType {
     currency: string,
     filterStops: filterStopsType,
     currencyRates: CurrencyRatesType,
-    setCurrency?: setCurrencyType,
+    setCurrency: setCurrencyType,
 }
 
 export const AppContext = React.createContext<ContextType>({
     currency: baseCurrency,
     currencyRates: currencyRatesInitial,
     filterStops: () => {
+    },
+    setCurrency: () => {
     },
 });
 
@@ -72,16 +74,22 @@ class App extends React.PureComponent<CommonData, State> {
     }
 
     componentDidUpdate(prevProps: Readonly<CommonData>): void {
-        const {tickets} = this.props;
+        const {tickets, currencyRates} = this.props;
         if (!prevProps.tickets && tickets) {
             this.setState({
                 tickets
             });
         }
+        if (prevProps.currencyRates.date !== currencyRates.date) {
+            this.setState({
+                currencyRates
+            });
+        }
     }
 
     render() {
-        const {tickets, stops} = this.state;
+        const {tickets, stops, currencyRates, currency} = this.state;
+        console.log(currencyRates, currencyRates.rates[currency]);
         return (
             <AppContext.Provider value={this.state}>
                 <div className={s.Block}>

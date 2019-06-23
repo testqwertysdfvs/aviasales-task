@@ -13,6 +13,7 @@
     border: 1px solid #D2D5D6;
     background-color: #fff;
     border-right: none;
+    color: #2196F3;
     &:hover {
       background-color: #F2FCFF;
       border-color: #64B5F5;
@@ -25,9 +26,9 @@
     font-family: $ff-open-sans;
     font-weight: 600;
     font-size: 12px;
-    color: #2196F3;
     letter-spacing: 0.5px;
     line-height: 37px;
+    color: inherit;
     text-transform: uppercase;
     width: 100%;
     background-color: transparent;
@@ -36,6 +37,10 @@
   }
   .TabsItemSelected {
     background-color: #2196F3;
+    color: #fff;
+    &:hover {
+      background-color: #2196F3;
+    }
   }
   .TabsItemLeft {
     border-radius: 5px 0 0 5px;

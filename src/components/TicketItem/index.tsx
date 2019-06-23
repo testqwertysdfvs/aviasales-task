@@ -35,7 +35,7 @@ const TicketItem = (props: Ticket) => {
     } = props;
     return (
         <AppContext.Consumer>
-            {context =>  <div className={s.Block}>
+            {context => <div className={s.Block}>
                 <div className={s.SideContent}>
                     <div className={s.ImgBox}>
                         <img src={logos[carrier]} alt={carrier} className={s.Logo}/>
@@ -43,7 +43,7 @@ const TicketItem = (props: Ticket) => {
                     <button type="button" className={s.BuyBtn}>
                         Купить
                         <br/>
-                        за {`${price * context.currencyRates.rates[context.currency]} ${currencies[context.currency]}`}
+                        за {`${Math.round(price * context.currencyRates.rates[context.currency])} ${currencies[context.currency]}`}
                     </button>
                 </div>
                 <div className={s.Content}>
@@ -72,4 +72,4 @@ const TicketItem = (props: Ticket) => {
     );
 };
 
-export default TicketItem;
+export default React.memo(TicketItem);
