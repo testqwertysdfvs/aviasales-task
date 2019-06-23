@@ -54,7 +54,7 @@ const TicketItem = (props: Ticket) => {
                     <MediaQuery maxWidth={768}>
                         <div className={s.Header}>
                             <div className={s.Path}>
-                                {`${stops} ${declOfNum(stops, ['пересадка', 'пересадки', 'пересадок'])}`}
+                                {stops > 0 ? `${stops} ${declOfNum(stops, ['пересадка', 'пересадки', 'пересадок'])}` : null}
                             </div>
                             <div className={s.ImgBox}>
                                 <img src={logos[carrier]} alt={carrier} className={s.Logo}/>
@@ -66,7 +66,7 @@ const TicketItem = (props: Ticket) => {
                         <MediaQuery minWidth={768}>
                             <div>
                                 <div className={s.Path}>
-                                    {`${stops} ${declOfNum(stops, ['пересадка', 'пересадки', 'пересадок'])}`}
+                                    {stops > 0 ? `${stops} ${declOfNum(stops, ['пересадка', 'пересадки', 'пересадок'])}` : null}
                                 </div>
                             </div>
                         </MediaQuery>

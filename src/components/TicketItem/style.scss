@@ -145,6 +145,7 @@
     height: 12px;
     @include respond-to('medium') {
       left: -7px;
+      width: 68px;
     }
     &:before {
       @include respond-to('medium') {
