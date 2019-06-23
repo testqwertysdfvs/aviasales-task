@@ -26,10 +26,12 @@ const CurrencyTabs = () => {
             );
         });
     return (
-        <ul className={s.Tabs}>
+        <React.Fragment>
             {context.error === 'CURRENCY_ERROR' ? <div className={s.Error}>Не удалось загрузить данные по валютам</div> : null}
-            {tabList}
-        </ul>
+            <ul className={s.Tabs}>
+                {tabList}
+            </ul>
+        </React.Fragment>
     );
 };
 
