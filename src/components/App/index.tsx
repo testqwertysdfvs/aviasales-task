@@ -1,4 +1,3 @@
-import {StopType} from "Components/FilterCheckbox";
 import Options from "Components/Options";
 import {stopsArrayType} from "Components/StopsFilter";
 import {Ticket} from "Components/TicketItem";
@@ -7,7 +6,7 @@ import * as React from "react";
 import {CommonData} from "Root/containers/App";
 import s from './style.scss';
 
-export type filterStopsType = (stop: StopType, add: boolean) => void;
+export type filterStopsType = (stop: number, add: boolean) => void;
 export type setCurrencyType = (currency: string) => void;
 
 interface State {
@@ -27,7 +26,7 @@ class App extends React.Component<CommonData, State> {
     constructor(props: CommonData) {
         super(props);
 
-        this.filterStops = (stop: StopType, add: boolean) => {
+        this.filterStops = (stop: number, add: boolean) => {
             const {stops} = this.state;
             if (add) {
                 this.setState({
@@ -48,7 +47,7 @@ class App extends React.Component<CommonData, State> {
 
         this.state = {
             tickets: props.tickets,
-            stops: ['all'],
+            stops: [],
             currency: 'rub',
             filterStops: this.filterStops,
             setCurrency: this.setCurrency,
@@ -71,7 +70,7 @@ class App extends React.Component<CommonData, State> {
             <AppContext.Provider value={this.state}>
                 <div className={s.Block}>
                     <Options/>
-                    <TicketsList tickets={tickets}/>
+                    <TicketsList tickets={tickets} stops={stops}/>
                 </div>
             </AppContext.Provider>
         );

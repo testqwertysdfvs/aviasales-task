@@ -3,10 +3,8 @@ import * as React from 'react';
 import declOfNum from './../../functions/declOfNum';
 import s from './style.scss';
 
-export type StopType = 'all' | number;
-
 interface Props {
-    value: StopType,
+    value: number,
     checked: boolean,
     changeFunc: filterStopsType | undefined,
 }
@@ -23,9 +21,7 @@ class FilterCheckbox extends React.Component<Props> {
     render() {
         const {value, checked} = this.props;
         let text: string;
-        if (value === 'all') {
-            text = 'Все';
-        } else if (value === 0) {
+        if (value === 0) {
             text = 'Без пересадок';
         } else {
             text = `${value} ${declOfNum(value, ['пересадка', 'пересадки', 'пересадок'])}`;

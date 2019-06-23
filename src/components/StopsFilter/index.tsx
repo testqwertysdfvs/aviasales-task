@@ -4,7 +4,7 @@ import * as React from 'react';
 //import s from './style.scss';
 import {AppContext} from "Components/App";
 
-export type stopsArrayType = Array<'all' |number>;
+export type stopsArrayType = Array<number>;
 
 const StopsFilter = () => {
     const context = React.useContext(AppContext),
@@ -12,8 +12,7 @@ const StopsFilter = () => {
         stopsVariants = tickets ? [...new Set(tickets
             .map(ticket => ticket.stops))]
             .sort((a, b) => a - b) : [],
-        stopsArray: stopsArrayType = ['all', ...stopsVariants],
-        stopsCheckboxes = stopsArray.map(value => {
+        stopsCheckboxes = stopsVariants.map(value => {
             const isChecked: boolean = context.stops ? context.stops.includes(value) : false;
             return <FilterCheckbox key={`key-${value}`} value={value} checked={isChecked} changeFunc={context.filterStops}/>;
         });

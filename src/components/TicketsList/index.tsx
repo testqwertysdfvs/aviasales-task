@@ -1,9 +1,11 @@
+import {stopsArrayType} from "Components/StopsFilter";
 import * as React from 'react';
 import TicketItem, {Ticket} from "Components/TicketItem";
 import s from './style.scss';
 
 interface Props {
     tickets: Array<Ticket> | null,
+    stops: stopsArrayType,
 }
 
 const TicketsList = (props: Props) => {
@@ -12,8 +14,8 @@ const TicketsList = (props: Props) => {
         return a.price - b.price
     }
 
-    const {tickets} = props,
-        list = tickets ? tickets.sort(sortByPrice).map(ticket =>
+    const {tickets, stops} = props,
+        list = tickets ? tickets.filter(ticket => stops.includes(ticket.stops)).sort(sortByPrice).map(ticket =>
             (
                 <li key={ticket.departure_time + ticket.price}>
                     <TicketItem {...ticket}/>
