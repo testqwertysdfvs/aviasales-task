@@ -75,7 +75,7 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 8192,
+                            limit: 1024,
                         },
                     },
                 ],
@@ -83,7 +83,10 @@ module.exports = {
             {
                 test: /\.svg/,
                 use: {
-                    loader: 'svg-url-loader'
+                    loader: 'svg-url-loader',
+                    options: {
+                        limit: 1024
+                    }
                 }
             },
         ]

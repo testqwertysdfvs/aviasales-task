@@ -5,6 +5,7 @@ import TicketsList from "Components/TicketsList";
 import * as React from "react";
 import {baseCurrency, currencyRatesInitial} from "Root/constants";
 import {CommonData, CurrencyRatesType} from "Root/containers/App";
+import AirplaneLogo from './../../assets/icons/airplane-img.svg';
 import s from './style.scss';
 
 export type filterStopsType = (stop: number | Array<number>, add: boolean) => void;
@@ -88,10 +89,10 @@ class App extends React.PureComponent<CommonData, State> {
     }
 
     render() {
-        const {tickets, stops, currencyRates, currency} = this.state;
-        console.log(currencyRates, currencyRates.rates[currency]);
+        const {tickets, stops} = this.state;
         return (
             <AppContext.Provider value={this.state}>
+                <div className={s.Header}><img src={AirplaneLogo} alt="airplane-logo"/></div>
                 <div className={s.Block}>
                     <Options/>
                     <TicketsList tickets={tickets} stops={stops}/>

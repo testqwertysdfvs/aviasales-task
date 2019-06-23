@@ -1,4 +1,10 @@
 :local {
+  .Header {
+    padding: 50px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .Block {
     display: flex;
     max-width: 848px;
