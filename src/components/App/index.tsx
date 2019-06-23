@@ -3,7 +3,8 @@ import {stopsArrayType} from "Components/StopsFilter";
 import {Ticket} from "Components/TicketItem";
 import TicketsList from "Components/TicketsList";
 import * as React from "react";
-import {CommonData} from "Root/containers/App";
+import {baseCurrency, currencyRatesInitial} from "Root/constants";
+import {CommonData, CurrencyRatesType} from "Root/containers/App";
 import s from './style.scss';
 
 export type filterStopsType = (stop: number | Array<number>, add: boolean) => void;
@@ -13,6 +14,7 @@ interface State {
     tickets: Array<Ticket> | null,
     stops: stopsArrayType,
     currency: string,
+    currencyRates: CurrencyRatesType,
     filterStops: filterStopsType,
     setCurrency: setCurrencyType,
 }
@@ -20,12 +22,15 @@ interface State {
 interface ContextType {
     tickets?: Array<Ticket> | null,
     stops?: stopsArrayType,
-    currency?: string,
+    currency: string,
     filterStops: filterStopsType,
+    currencyRates: CurrencyRatesType,
     setCurrency?: setCurrencyType,
 }
 
 export const AppContext = React.createContext<ContextType>({
+    currency: baseCurrency,
+    currencyRates: currencyRatesInitial,
     filterStops: () => {
     },
 });
@@ -59,7 +64,8 @@ class App extends React.PureComponent<CommonData, State> {
         this.state = {
             tickets: props.tickets,
             stops: [],
-            currency: 'rub',
+            currency: baseCurrency,
+            currencyRates: props.currencyRates,
             filterStops: this.filterStops,
             setCurrency: this.setCurrency,
         };
@@ -76,7 +82,6 @@ class App extends React.PureComponent<CommonData, State> {
 
     render() {
         const {tickets, stops} = this.state;
-        console.log('stops', stops);
         return (
             <AppContext.Provider value={this.state}>
                 <div className={s.Block}>
